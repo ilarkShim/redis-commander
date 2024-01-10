@@ -9,7 +9,7 @@ services:
   redis-commander:
     container_name: redis-commander
     hostname: redis-commander
-    image: ghcr.io/joeferner/redis-commander:latest
+    image: rediscommander/redis-commander:latest
     build: .
     restart: always
     environment:

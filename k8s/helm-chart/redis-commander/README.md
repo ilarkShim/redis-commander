@@ -2,7 +2,7 @@
 
 A Helm chart for redis-commander
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 ## Install
 
@@ -18,9 +18,8 @@ helm -n myspace install redis-web-ui ./k8s/helm-chart/redis-commander --set redi
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | optional set pod affinity definitions for kubernetes |
+| affinity | object | `{}` |  |
 | autoscaling | object | `{"enabled":false,"maxReplicas":1,"minReplicas":1,"targetCPUUtilizationPercentage":80}` | Autoscaling configuration for k8s deployment |
-| connections | object | `{}` | optional object to set the "local_production_json" property to let Helm render a "local-production.json"  file from a configmap to preconfigure more complex configuration examples with connection data too  without the need to set all parameter via environment variables (where available).  For a working example see file "example-manifest.yaml" |
 | env | list | `[]` | Extra env vars for the main pod redis-commander in array structure ([{name: ... , value: ...}, {name: ... , value: ...}]). |
 | fullnameOverride | string | `""` |  |
 | httpAuth.password | string | `""` | Specify http basic password for the web ui |
@@ -32,20 +31,14 @@ helm -n myspace install redis-web-ui ./k8s/helm-chart/redis-commander --set redi
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | Optional image pull secrets for private docker registries |
 | ingress.annotations | object | `{}` | Add additional annotations for the ingess spec Example:   'kubernetes.io/ingress.class: nginx' or 'kubernetes.io/tls-acme: "true"' |
-| ingress.className | string | `""` | optional name of an IngressClass used for this Ingress, available since k8s 1.18 https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource |
 | ingress.enabled | bool | `false` | Enable Ingress for the service |
 | ingress.hosts[0] | object | `{"host":"chart-example.local","paths":["/"]}` | Host name to use for the ingress definition |
 | ingress.hosts[0].paths | list | `["/"]` | list of paths within the given host for path-based routing, otherwise the root path "/" will be used |
 | ingress.legacy | bool | `false` | Use *Legacy*, deprecated Ingress versions. Ingress apiVersions prior to `networking.k8s.io/v1` are deprecated and removed in kubernetes 1.22. Set the `legacy` flag to *true* if you are using kubernetes older than 1.19 or OpenShift v3 and require support for the older API versions. |
 | ingress.pathType | string | `"ImplementationSpecific"` | Set the pathType for the v1 Ingress resource.  This setting is ignored for `legacy` Ingress resources. Details on **Path Type** are available here; https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types |
 | ingress.tls | list | `[]` |  |
-| istio.enabled | bool | `false` | Enable Istio VirtualService for the service The endpoint (target) is defined by the regular k8s service already defined by the chart |
-| istio.gateway | string | `""` | Gateway name to use for the istio definition |
-| istio.host | string | `""` | Host name to use for the istio definition |
-| istio.hostPrefix | string | `"/"` | Host prefix to use for the istio definition |
-| kubeVersion | string | `""` | Optional override Kubernetes version |
 | nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` | optional set pod node selector definitions for kubernetes |
+| nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | redis.host | string | `"redis-master"` | Specifies a single Redis host |
@@ -55,15 +48,12 @@ helm -n myspace install redis-web-ui ./k8s/helm-chart/redis-commander --set redi
 | replicaCount | int | `1` | Number of replicas to create for deployment, should be 1 |
 | resources | object | `{}` | We usually recommend not to specify default resources and to leave this as a conscious choice for the user. This also increases chances charts run on environments with little resources, such as Minikube. If you do want to specify resources, uncomment the following lines, adjust them as necessary, and remove the curly braces after 'resources:'. |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":false,"runAsNonRoot":true}` | Configuration of the linux security context for the docker image. This restricts the rights of the running docker image as far as possible. "readOnlyRootFilesystem" must be set to false to auto-generate a config file with multiple redis hosts or sentinel hosts |
-| service.annotations | object | `{}` | Add additional annotations for the service spec Example:   'my.custom.annotation: value' |
 | service.port | int | `80` | External port where service is available |
 | service.type | string | `"ClusterIP"` | Type of k8s service to export |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created When no service account is created the account credentials of the default account are also not automatically mounted into the pod (automountServiceAccountToken: false), tokens only mounted when service account is used but Redis-Commander itself does not use the k8s api server token |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
-| tolerations | list | `[]` | optional set pod toleration definitions for kubernetes |
-| volumeMounts | list | `[]` | optional list of volumes to mount into the docker deployment. This can either be a local storage volume  or a configmap to mount data as file. Each list item needs a "name" and a "mountPath". Setting this will most time  also require setting a "volumes" entry.  For a working example see file "example-manifest.yaml" |
-| volumes | list | `[]` | optional list of volumes to mount into the docker deployment. This can either be a loca storage volume  or a configmap to mount data as file. Each list item needs a "name" and a "mountPath". Setting this will most time  also require setting a "volumeMounts" entry.  For a working example see file "example-manifest.yaml" |
+| tolerations | list | `[]` |  |
 
 ## Example
 

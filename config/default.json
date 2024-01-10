@@ -19,18 +19,13 @@
     "rootPattern": "*",
     "connectionName": "redis-commander",
     "defaultLabel": "local",
-    "defaultSentinelGroup": "mymaster",
-    "extraAllowedReadOnlyCommands": [
-      "select",
-      "info"
-    ]
+    "defaultSentinelGroup": "mymaster"
   },
   "server": {
     "address": "0.0.0.0",
     "port": 8081,
     "urlPrefix": "",
     "signinPath": "signin",
-    "httpAuthHeaderName": "Authorization",
     "trustProxy": false,
     "clientMaxBodySize": "100kb",
     "httpAuth": {

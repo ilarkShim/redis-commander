@@ -96,9 +96,6 @@
                 }
             }
         },
-        "kubeVersion": {
-            "type": "string"
-        },
         "nameOverride": {
             "type": "string"
         },
@@ -167,9 +164,6 @@
                 },
                 "type": {
                     "type": "string"
-                },
-                "annotations": {
-                    "type": "object"
                 }
             }
         },
@@ -189,15 +183,6 @@
         },
         "tolerations": {
             "type": "array"
-        },
-        "connections": {
-        "type": "object"
-        },
-        "volumeMounts": {
-        "type": "array"
-        },
-        "volumes": {
-        "type": "array"
         }
     }
 }

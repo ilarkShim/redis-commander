@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.15
 
 WORKDIR /redis-commander
 
@@ -18,10 +18,10 @@ COPY . .
 # for Openshift compatibility set project config dir itself group root and make it group writeable
 RUN  apk update \
   && apk upgrade \
-  && apk add --no-cache ca-certificates dumb-init sed jq nodejs npm yarn icu-libs icu-data-full \
+  && apk add --no-cache ca-certificates dumb-init sed jq nodejs npm yarn \
   && update-ca-certificates \
   && echo -e "\n---- Create runtime user and fix file access rights ----------" \
-  && adduser "${SERVICE_USER}" -h "${HOME}" -G root -S -u 10000 \
+  && adduser "${SERVICE_USER}" -h "${HOME}" -G root -S -u 1000 \
   && chown -R root.root "${HOME}" \
   && chown -R "${SERVICE_USER}" "${HOME}/config" \
   && chmod g+w "${HOME}/config" \
@@ -34,7 +34,7 @@ RUN  apk update \
   && "${HOME}/docker/harden.sh" \
   && rm -rf /tmp/* /root/.??* /root/cache /var/cache/apk/*
 
-USER 10000
+USER 1000
 
 HEALTHCHECK --interval=1m --timeout=2s CMD ["/redis-commander/bin/healthcheck.js"]
 

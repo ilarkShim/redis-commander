@@ -76,10 +76,6 @@ spec:
           {{- end }}
           - name: K8S_SIGTERM
             value: "1"
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
-            {{- toYaml . | default "" | nindent 12 }}
-          {{- end }}
           livenessProbe:
             httpGet:
               path: /favicon.png
@@ -88,10 +84,6 @@ spec:
             timeoutSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.volumes }}
-      volumes:
-        {{- toYaml . | default "" | nindent 8 }}
-      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
