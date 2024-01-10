@@ -1,7 +1,0 @@
-/.idea
-/node_modules
-*.rdb
-*.iml
-/config/local.json
-/config/local-*.json
-.DS_Store
