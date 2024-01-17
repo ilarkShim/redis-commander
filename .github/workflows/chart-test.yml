@@ -38,7 +38,7 @@ jobs:
         uses: azure/setup-helm@v1
         with:
           version: ${{ env.HELM_VERSION }}
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.9
       - name: Set up chart-testing
