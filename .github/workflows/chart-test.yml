@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Helm
@@ -51,7 +51,7 @@ jobs:
     needs: lint-chart
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Run helm-docs
@@ -74,7 +74,7 @@ jobs:
           - v1.21.3
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Helm
@@ -106,7 +106,7 @@ jobs:
 #          - v1.21.2
 #    steps:
 #      - name: Checkout
-#        uses: actions/checkout@v3
+#        uses: actions/checkout@v4
 #      - name: Create kind ${{ matrix.k8s }} cluster
 #        uses: helm/kind-action@master
 #        with:
